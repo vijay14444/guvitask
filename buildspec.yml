@@ -1,28 +1,13 @@
-name: Code Build
+version: 0.2
 
-on:
-  push:
-    branches:
-      - main  # Trigger build when code is pushed to the main branch
-
-jobs:
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
   build:
-    runs-on: ubuntu-latest
+    commands:
+      - echo Building project...
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run Build Script
-        run: npm run build
-
-      - name: Done
-        run: echo "✅ Build completed successfully!"
+artifacts:
+  files:
+    - '**/*'
